@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers( {
+import storyReducer from "./story";
 
+const rootReducer = combineReducers( {
+    story: storyReducer
 } );
 
 export default rootReducer;

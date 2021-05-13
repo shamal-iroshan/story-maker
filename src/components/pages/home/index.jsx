@@ -1,38 +1,45 @@
 import React, {useState} from 'react';
+import {useDispatch} from "react-redux";
+import {withRouter} from 'react-router-dom';
 
-import fireStore from '../../../config/firebase';
+import firebase from '../../../config/firebase';
+import {addStoryDetails} from "../../../actions";
 import '../../../styles/css/home.css';
 
-function home() {
+function home(props) {
 
+    const dispatch = useDispatch();
     const [type,setType] = useState(true);
 
     function formSubmit(event) {
         event.preventDefault();
-        let data = {}
+        let data = {
+            story: []
+        }
         if (type) {
             data.name = event.target.elements.name.value;
             data.storyName = event.target.elements.storyName.value;
+
+            const firestore = firebase.firestore();
+
+            firestore.collection('stories').add({
+                ...data,
+                dateTime: new Date().toISOString()
+            }).then(docRef => {
+                data.id = docRef.id;
+                dispatch(addStoryDetails(data));
+                props.history.push(`/story/${data.id}`);
+            }).catch(error => {
+                console.log(error);
+            });
+
         } else {
             data.name = event.target.elements.name.value;
             data.storyCode = event.target.elements.storyCode.value;
+
+            dispatch(addStoryDetails(data));
+            props.history.push(`/story/${data.storyCode}`);
         }
-
-        fireStore.collection('stories').add({
-            ...data,
-            dateTime: new Date().toISOString()
-        }).then(docRef => {
-            data.id = docRef.id;
-            localStorage.setItem('storyDetails', JSON.stringify(data));
-        }).catch(error => {
-            console.log(error);
-        });
-
-        // fireStore.collection('stories').doc('NgWXRktY4lHGjftfLSGI').update({2: {name: 'shamal', time: new Date(), data: 'sdfeffeffeffrefefefeffeefeffeedgtrgrgghrthgththtrrgrfgfghgthgtwthgtht'}}).then(() => {
-        //     console.log('updated')
-        // }).catch(error => {
-        //     console.log(error);
-        // });
     }
 
     return (
@@ -87,4 +94,4 @@ function home() {
     );
 }
 
-export default home;
+export default withRouter(home);

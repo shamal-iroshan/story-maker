@@ -1,0 +1,1 @@
+export const ADD_STORY_DATA = 'ADD_STORY_DATA';
