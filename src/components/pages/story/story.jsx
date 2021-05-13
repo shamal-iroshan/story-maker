@@ -11,7 +11,7 @@ function story(props) {
     const [storyDetail, setStoryDetail] = useState(null);
 
     useEffect(() => {
-
+        const unsubscribe = firebase;
         firebase.firestore()
             .collection('stories')
             .doc(storyID)
@@ -35,6 +35,8 @@ function story(props) {
             }).catch(error => {
             console.log(error);
         })
+
+        return () => unsubscribe()
     }, []);
 
     useEffect(() => {
