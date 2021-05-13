@@ -47,16 +47,16 @@ function home(props) {
             <div className="home-container">
                 <div className="home-content-container">
                     <div className="row">
-                        <div className="col-5 text-center text-secondary">
+                        <div className="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 text-center text-secondary">
                             <h4 className={!type ? 'd-none' : ''}>New Story</h4>
                         </div>
-                        <div className="col-2 text-center">
+                        <div className="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 text-center">
                             <label className="switch">
                                 <input type="checkbox" onChange={() => {setType(!type)}}/>
                                 <span className="slider"/>
                             </label>
                         </div>
-                        <div className="col-5 text-center text-secondary">
+                        <div className="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 text-center text-secondary">
                             <h4 className={type ? 'd-none' : ''}>Join Story</h4>
                         </div>
                     </div>

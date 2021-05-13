@@ -11,14 +11,15 @@ function story(props) {
     const [storyDetail, setStoryDetail] = useState(null);
 
     useEffect(() => {
-        const unsubscribe = firebase;
-        firebase.firestore()
+        const db = firebase.firestore();
+        let unsubscribe;
+        db
             .collection('stories')
             .doc(storyID)
             .get()
             .then(doc => {
                 if (doc.exists) {
-                    firebase.firestore()
+                    unsubscribe = db
                         .collection('stories')
                         .doc(storyID)
                         .onSnapshot((snapshot => {
@@ -36,7 +37,7 @@ function story(props) {
             console.log(error);
         })
 
-        return () => unsubscribe()
+        return () => unsubscribe;
     }, []);
 
     useEffect(() => {
@@ -71,13 +72,16 @@ function story(props) {
             <div className="container-fluid nav-container">
                 <form onSubmit={formSubmit}>
                     <div className="row">
-                        <div className="col-3 d-flex align-items-center justify-content-center">
+                        <div
+                            className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 d-flex align-items-center justify-content-center">
                             <h3 className="text-white text-center">{storyDetail && storyDetail.storyName}</h3>
                         </div>
-                        <div className="col-7 d-flex align-items-center justify-content-center">
+                        <div
+                            className="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 d-flex align-items-center justify-content-center">
                             <textarea className="form-control txtStory" required name="story"/>
                         </div>
-                        <div className="col-2 text-center d-flex align-items-center justify-content-center">
+                        <div
+                            className="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 pt-2 pt-sm-2 pt-md-2 pt-lg-2 pt-xl-2 text-center d-flex align-items-center justify-content-center">
                             <button type="submit" className="btn btn-warning pl-5 pr-5">Submit</button>
                         </div>
                     </div>
@@ -89,9 +93,9 @@ function story(props) {
                     {
                         storyDetail && storyDetail.story.length > 0 ?
                             storyDetail.story.map((item, index) => (
-                                <div key={index} className="col-4 mb-3">
+                                <div key={index} className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-3">
                                     <div className="card p-3">
-                                        <h5 className="story-card-heading">{index+1}) {item.name}</h5>
+                                        <h5 className="story-card-heading">{index + 1}) {item.name}</h5>
                                         <p>{item.myStory}</p>
                                     </div>
                                 </div>
