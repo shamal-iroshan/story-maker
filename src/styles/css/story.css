@@ -2,6 +2,9 @@
     background-color: #29acf6;
     padding-top: 10px;
     padding-bottom: 10px;
+    position: fixed;
+    z-index: 10;
+    top: 0;
 }
 
 .txtStory {
@@ -12,4 +15,14 @@
 .story-card-heading {
     font-size: 15px;
     text-decoration: underline;
+}
+
+.story-container {
+    padding-top: 120px;
+}
+
+@media all and (max-width: 760px ){
+    .story-container {
+        padding-top: 200px;
+    }
 }

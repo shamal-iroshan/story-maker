@@ -61,6 +61,7 @@ function story(props) {
             .doc(storyID)
             .update({story: updatedStory})
             .then(() => {
+                event.target.elements.story.value = '';
             })
             .catch(error => {
                 console.log(error);
@@ -88,7 +89,7 @@ function story(props) {
                 </form>
             </div>
 
-            <div className="container-fluid mt-5">
+            <div className="container-fluid story-container">
                 <div className="row">
                     {
                         storyDetail && storyDetail.story.length > 0 ?
