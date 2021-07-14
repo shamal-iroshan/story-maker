@@ -34,8 +34,10 @@ function home(props) {
             });
 
         } else {
+            let storyCode = event.target.elements.storyCode.value;
+            storyCode = storyCode.trim();
             data.name = event.target.elements.name.value;
-            data.storyCode = event.target.elements.storyCode.value;
+            data.storyCode = storyCode;
 
             dispatch(addStoryDetails(data));
             props.history.push(`/story/${data.storyCode}`);
