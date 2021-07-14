@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom';
 
 import firebase from '../../../config/firebase';
 import '../../../styles/css/story.css';
+import heart_item from './heart.png';
 
 function story(props) {
     const storyID = props.match.params.id;
@@ -106,6 +107,27 @@ function story(props) {
                                 <h3 className="text-white text-center">Waiting for your awesome imagination</h3>
                             </div>
                     }
+                </div>
+            </div>
+
+            <div style={{backgroundColor: "#707474", height: 50}}>
+                <div className="container-fluid mt-5">
+                    <div className="row">
+                        <div className="col-12 text-center">
+                            <div className="copyright">
+                                <div>
+                                    <p className="copyright-text mb-0 mt-2">
+                                        Copyright &copy;
+                                        {
+                                            ' ' + new Date().getFullYear()+ ' '
+                                        }
+                                        All rights reserved | Made with <img style={{width: 25}} src={heart_item} alt=""/> by
+                                        Shamal
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

@@ -21,6 +21,10 @@
     padding-top: 120px;
 }
 
+.copyright-text {
+    color: #fff;
+}
+
 @media all and (max-width: 760px ){
     .story-container {
         padding-top: 200px;
